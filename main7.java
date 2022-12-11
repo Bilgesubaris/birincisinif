@@ -1,0 +1,17 @@
+import java.util.Scanner;
+
+public class main7 {
+    public static void main(String[] args) {
+        int r;
+        double alan,cevre,pi = 3.14;
+
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("Daire yarı çapını giriniz : ");
+        r = input.nextInt();
+        cevre = 2 * pi * r;
+        alan = pi * (r*r);
+        System.out.println("Dairenin Alanı : " + alan);
+        System.out.println("Dairenin Çevresi : " + cevre);
+    }
+}
