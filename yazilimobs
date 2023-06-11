@@ -1,0 +1,371 @@
+import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
+
+interface Ogrencibilgi {
+}
+abstract class OgrenciOtomasyon {
+    private String ad;
+    private String soyad;
+
+    public OgrenciOtomasyon(String ad, String soyad) {
+        this.ad = ad;
+        this.soyad = soyad;
+    }
+    public String getAd() {
+        return ad;
+    }
+    public String getSoyad() {
+        return soyad;
+    }
+    public abstract void bilgileriGoster();
+}
+class Ogrenci extends OgrenciOtomasyon {
+    private List<Ogrenci> ogrenciler;
+    public Ogrenci(String ad, String soyad) {
+        super(ad, soyad);
+        ogrenciler = new ArrayList<>();
+    }
+
+    public void ogrenciEkle(Ogrenci ogrenci) {
+        ogrenciler.add(ogrenci);
+    }
+
+    public void ogrenciSil(Ogrenci ogrenci) {
+        ogrenciler.remove(ogrenci);
+    }
+
+    public void bilgileriGoster() {
+        System.out.println("Ad: " + getAd());
+        System.out.println("Soyad: " + getSoyad());
+    }
+}
+// Her dönemin dersleri
+class Dersler{
+    String [] güz1 ={"Algoritma1","Bilgisayar Bilimlerine Giriş","Fizik1","Fizik lab1","Matematik1","İngilizce1","Türk Dili1"};
+    String []bahar1 ={"Algoritma2","Yazılım Mühendisliği Temelleri","Fizik2","Fizik lab2","Matematik2","İngilizce2","Türk Dili2"};
+    String [] güz2= {"Olasılık ve İstatistik","Lineer Cebir","Ayrık Yapılar","Mesleki İngilizce","Sayısal Tasarım","Nesne Tabanlı Programlama",
+            "Veri Yapıları","Atatürk İlke ve İnkılap Tarihi1" };
+    String []bahar2={"Diferansiyel Denklemler","İngilizce İletişim Becerileri", "Yazılım Gereksinimleri ve Analizi","Sayısal Analiz",
+            "Yazılım Ekonomisi","İleri Programlama Teknikleri","Atatürk İlke ve İnkılap Tarihi2","Veri Yapılaeı","Nesne Tabanlı Programlama","Mikroişlemciler ve Programlama"};
+    String[]güz3={"Yazılım Tasarım ve Mimarisi","Mikroişlemciler ve Programlama" ,"Web Tasarım ve Programlama","İşletim Sistemleri",
+            "Veri Tabanı Yönetim Sistemi","Bilgi Sistemleri ve Güvenliği", "Algoritma Analizi","Programlama Dilleri","Ağ Sistemleri"};
+    String[]bahar3={"Web Tasarım Programlama","Biçimsel Diller ve Otomata Teorisi","Fonksiyonel Programlama", "Algoritma Analizi","Veri Madenciliği","Ağ Programlama","Yazılım Tasarım ve Mimarisi"};
+    String[]güz4={"Yapay Zeka ve Uzman Sistemleri","Yazılım Kalite ve Güvence Testi","Sayısal Görüntü İşleme Yöntemleri","Girişimcilik1", "Yazılım Mühendisliği Güncel Konular"};
+    String[]bahar4={"Yapay Zeka ve Uzman Sistemleri","Girişimcilik2","Sayısal Görüntü İşleme Yöntemleri","Yazılım Mühendisliği Güncel Konular"};
+
+    public String[] getGüz1() {
+        return güz1;
+    }
+    public String[] getGüz2() {
+        return güz2;
+    }
+    public String[] getGüz3() {
+        return güz3;
+    }public String[] getGüz4() {
+        return güz4;
+    }
+    public String[] getBahar1() {
+        return bahar1;
+    }
+    public String[] getBahar2() {
+        return bahar2;
+    }
+    public String[] getBahar3() {
+        return bahar3;
+    }
+    public String[] getBahar4() {
+        return bahar4;
+
+        }
+}
+class OrtakDersler {
+    String []  OrtakDersler= {"Türk Dili 110", "İngilizce 107"};
+    public String[] getOrtakDersler() {
+        return OrtakDersler;
+    }
+}
+class Sistem{
+    public static void main(String[]args){
+        Scanner ogrenciler=new Scanner(System.in);
+        System.out.println("Yazılım Mühendisliği Öğrenci Bilgi Sistemi Açılıyor");
+        //Kullanıcı Bilgilerini Alma
+        System.out.print("Adınızı Giriniz:");
+        String ad =ogrenciler.next();
+        System.out.print("Soyadınızı Giriniz:");
+        String soyad =ogrenciler.next();
+        System.out.print("Doğum Tarihinizi Giriniz (Araya herhangi bir noktalama işareti ve boşluk koymayınız) :");
+        int dogum =ogrenciler.nextInt();
+        System.out.print("Sınıfınızı giriniz(1-4):");
+        int sinif =ogrenciler.nextInt();
+        System.out.print("A ya da B şube seçiniz: ");
+        String sube = ogrenciler.next();
+
+        // Kullanıcı sorgulama
+        System.out.println("Öğrenci Bilgi Sistemine Hoşgeldiniz");
+        System.out.println("Kullanıcı Adınız:Adınız+Soyadınızdır.");
+        String kullanici =ad+soyad;
+        System.out.print("Kullanıcı adınızı giriniz:");
+        String kullaniciad =ogrenciler.next();
+        while(true){
+        //Şifre sorgulama
+        String sifre=soyad.substring(0,2); //soyadın ilk 2 harfinin alan kod kısmı.
+        sifre=sifre+dogum;
+        System.out.println("Parolanız soyadınızın ilk 2 harfi ve dogum yılınızdır.");
+        System.out.print("Parolanızı giriniz:");
+        String parola=ogrenciler.next();
+        //Şifre ve parola kontolü
+            if (parola.equals(sifre)) {
+                System.out.println("Giriş Başarılı!");
+                System.out.println("Programda yapabileceğiniz işlem hakkı 3'tür.");
+            for(int i=0;i<3;i++){
+            System.out.print("1:Kişisel Bilgiler\n 2:Ortak Dersler\n 3:Dönem dersleri\n 4:Harç ücreti yatırma\n 5:Staj Durumu\nYapmak İstediğiniz İşlemi Seçiniz: ");
+            int secim=ogrenciler.nextInt();
+            switch (secim){
+                case 1:
+                    //Kişisel Bilgiler
+                    System.out.println("Adınız: "+ ad);
+                    System.out.println("Soyadınız: " + soyad);
+                    System.out.println("Doğum tarihiniz: " + dogum);
+                    System.out.println("Bölümünüz: Yazılım Mühendisliği");
+                    System.out.println("Sınıfınız: " + sinif);
+                    System.out.println("Şubeniz: "+ sube);
+                    break;
+                case 2:
+                    //Ortak Dersler
+                    if (sinif==1){
+                        OrtakDersler ortakDersler = new OrtakDersler();
+                        String[] dersler = ortakDersler.getOrtakDersler();
+                        System.out.println("Ortak Dersler:");
+                        for (String ders : dersler) {
+                            System.out.println(ders);
+                        }
+                    }
+                    else if (sinif==2){
+                        System.out.println("Atatürk ve inkılap Tarihi 209");
+                    }
+                    else {
+                        System.out.println("Ortak dersiniz yoktur.");
+                    }
+                    break;
+                case 3:
+                    // Dönem Dersleri
+                    if(sinif==1){
+                        System.out.println("Güz dönemi ise 1, Bahar dönemi ise 2' ye basınız:");
+                        int donem= ogrenciler.nextInt();
+                        if (donem==1){
+                        Dersler dersler = new Dersler();
+                        String[] courses = dersler.güz1;
+                        System.out.println("Güz 1 Dönemi Dersleri:");
+                        for (String course : courses) {
+                            System.out.println(course);
+                        }
+                        }
+                        else{
+                        Dersler dersler = new Dersler();
+                        String[] courses = dersler.bahar1;
+                        System.out.println("Bahar 1 Dönemi Dersleri:");
+                        for (String course : courses) {
+                        System.out.println(course);
+                        }
+                        }
+                        }
+
+                    if (sinif==2){
+                        System.out.println("Güz dönemi ise 1, Bahar dönemi ise 2' ye basınız:");
+                        int donem1= ogrenciler.nextInt();
+                        if (donem1==1){
+                            Dersler dersler = new Dersler();
+                            String[] courses = dersler.güz2;
+                            System.out.println("Güz 2 Dönemi Dersleri:");
+                            for (String course : courses) {
+                                System.out.println(course);
+                            }
+                        }
+                        else{
+                            Dersler dersler = new Dersler();
+                            String[] courses = dersler.bahar2;
+                            System.out.println("Bahar 2 Dönemi Dersleri:");
+                            for (String course : courses) {
+                                System.out.println(course);
+                                }
+                            }
+                    }
+                    if (sinif==3){
+                        System.out.println("Güz dönemi ise 1, Bahar dönemi ise 2' ye basınız:");
+                        int donem2= ogrenciler.nextInt();
+                        if (donem2==1){
+                            Dersler dersler = new Dersler();
+                            String[] courses = dersler.güz3;
+                            System.out.println("Güz 3 Dönemi Dersleri:");
+                            for (String course : courses) {
+                                System.out.println(course);
+                            }
+                        }
+                        else{
+                            Dersler dersler = new Dersler();
+                            String[] courses = dersler.bahar3;
+                            System.out.println("Bahar 3 Dönemi Dersleri:");
+                            for (String course : courses) {
+                                System.out.println(course);
+                            }
+                    }
+                        }
+                    if (sinif==4){
+                        System.out.print("Güz dönemi ise 1, Bahar dönemi ise 2' ye basınız:");
+                        int donem3= ogrenciler.nextInt();
+                        if (donem3==1){
+                            Dersler dersler = new Dersler();
+                            String[] courses = dersler.güz4;
+                            System.out.println("Güz 4 Dönemi Dersleri:");
+                            for (String course : courses) {
+                                System.out.println(course);
+                            }
+                        }
+
+                        else{
+                            Dersler dersler = new Dersler();
+                            String[] courses = dersler.bahar4;
+                            System.out.println("Bahar 4 Dönemi Dersleri:");
+                            for (String course : courses) {
+                                System.out.println(course);
+                            }
+                        }
+                        }
+                    // Başka dönem dersine bakabilme
+                    System.out.print("Başka görmek istediğiniz dönem dersleri var mı?(evet ise 1 -hayır is 2 şeklinde cevap veriniz.)");
+                    int yeniden= ogrenciler.nextInt();
+                    if(yeniden==1){
+                        System.out.print("Kaçıncı sınıfın derslerini görmek istersiniz?(1-4): ");
+                        int sinif1= ogrenciler.nextInt();
+                        if(sinif1==1){
+                            System.out.print("Güz dönemi ise 1, Bahar dönemi ise 2' ye basınız:");
+                            int donemsec= ogrenciler.nextInt();
+                            if (donemsec==1){
+                                Dersler dersler = new Dersler();
+                                String[] courses = dersler.güz1;
+                                System.out.println("Güz 1 Dönemi Dersleri:");
+                                for (String course : courses) {
+                                    System.out.println(course);
+                                }
+                            }
+                            else{
+                                Dersler dersler = new Dersler();
+                                String[] courses = dersler.bahar1;
+                                System.out.println("Bahar 1 Dönemi Dersleri:");
+                                for (String course : courses) {
+                                    System.out.println(course);
+                                }
+                            }
+                        }
+
+                        if (sinif1==2){
+                            System.out.println("Güz dönemi ise 1, Bahar dönemi ise 2' ye basınız:");
+                            int donemsec1= ogrenciler.nextInt();
+                            if (donemsec1==1){
+                                Dersler dersler = new Dersler();
+                                String[] courses = dersler.güz2;
+                                System.out.println("Güz 2 Dönemi Dersleri:");
+                                for (String course : courses) {
+                                    System.out.println(course);
+                                }
+                            }
+                            else{
+                                Dersler dersler = new Dersler();
+                                String[] courses = dersler.bahar2;
+                                System.out.println("Bahar 2 Dönemi Dersleri:");
+                                for (String course : courses) {
+                                    System.out.println(course);
+                                }
+                            }
+                        }
+                        if (sinif1==3){
+                            System.out.println("Güz dönemi ise 1, Bahar dönemi ise 2' ye basınız:");
+                            int donemsec2= ogrenciler.nextInt();
+                            if (donemsec2==1){
+                                Dersler dersler = new Dersler();
+                                String[] courses = dersler.güz3;
+                                System.out.println("Güz 3 Dönemi Dersleri:");
+                                for (String course : courses) {
+                                    System.out.println(course);
+                                }
+                            }
+                            else{
+                                Dersler dersler = new Dersler();
+                                String[] courses = dersler.bahar3;
+                                System.out.println("Bahar 3 Dönemi Dersleri:");
+                                for (String course : courses) {
+                                    System.out.println(course);
+                                }
+                            }
+                        }
+                        if (sinif1==4){
+                            System.out.println("Güz dönemi ise 1, Bahar dönemi ise 2' ye basınız:");
+                            int donemsec3= ogrenciler.nextInt();
+                            if (donemsec3==1){
+                                Dersler dersler = new Dersler();
+                                String[] courses = dersler.güz4;
+                                System.out.println("Güz 4 Dönemi Dersleri:");
+                                for (String course : courses) {
+                                    System.out.println(course);
+                                }
+                            }
+
+                            else{
+                                Dersler dersler = new Dersler();
+                                String[] courses = dersler.bahar4;
+                                System.out.println("Bahar 4 Dönemi Dersleri:");
+                                for (String course : courses) {
+                                    System.out.println(course);
+                                }
+                            }
+                        }
+                }
+                    else{
+
+                    }
+                    break;
+                case 4:
+                    //Harç ücreti yatırma
+                    System.out.println("İkinci öğretim misiniz? \n Evet ise 1 \n Hayır ise 2 ' ye basınız: ");
+                    int cevap = ogrenciler.nextInt();
+                    if (cevap==1){
+                        System.out.println("Harç ücretiniz 1243 TL'dir.");
+                    }
+                    else {
+                        System.out.println("Birinci öğretimlerin harç ücreti ödemesine gerek yoktur.");
+                    }
+                    break;
+                case 5:
+                    //Staj Durumu
+                    if (sinif ==1){
+                        System.out.println("Herhangi bir stajınız yoktur.");
+                    }
+                    else if (sinif==2){
+                        System.out.println("20 Günlük yaz stajınız vardır.");
+                    }
+                    else if (sinif==3){
+                        System.out.println("20 Günlük yaz stajınız vardır  ");
+                    }
+                    else {
+                        System.out.println("90 günlük iş yeri eğitiminiz vardır.");
+                    }
+                    break;
+
+                default:
+                    System.out.println("Geçersiz bir seçim yaptınız.");
+            }
+
+                System.out.print("Başka bir işlem yapmak istiyor musunuz? (Evet/Hayır): ");
+                String devam = ogrenciler.next();
+                if (!devam.equalsIgnoreCase("Evet"))
+                    break;
+            }
+                break;
+            } else {
+                System.out.println("Parola yanlış! Lütfen tekrar deneyiniz.");
+            }
+        }
+        System.out.println("Programdan çıkılıyor...");
+    }
+}
